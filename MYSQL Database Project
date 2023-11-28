@@ -1,0 +1,39 @@
+-- Run this script as a user who has privs to create tables and grant permissions, like "root"
+drop database if exists business;
+
+create database business;
+
+use business;
+
+create table employee
+	(
+	employee_id		int					primary key 	auto_increment,
+	first_name		varchar(100)		not null,
+	last_name		varchar(100)		not null,
+	department		varchar(100)		not null,
+	job_title		varchar(100)		not null,
+	salary			decimal(15,2)		not null
+	);
+
+insert into employee(first_name, last_name, department, job_title, salary)
+values ('Jean',' Unger', 'Accounting', 'Bookkeeper', 81200);
+
+insert into employee(first_name, last_name, department, job_title, salary)
+values ('Brock', 'Warren', 'Accounting', 'CFO', 246000);
+
+insert into employee(first_name, last_name, department, job_title, salary)
+values ('Ruth', 'Zito', 'Marketing', 'Creative Director', 178000);
+
+insert into employee(first_name, last_name, department, job_title, salary)
+values ('Ann', 'Ellis', 'Technology', 'Programmer', 119500);
+
+insert into employee(first_name, last_name, department, job_title, salary)
+values ('Todd', 'Lynch', 'Legal', 'Compliance Manager', 157000);
+
+create view v_employee as
+select	employee_id,
+		first_name,
+		last_name,
+		department,
+		job_title
+from	employee;
