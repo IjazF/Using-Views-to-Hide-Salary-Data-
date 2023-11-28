@@ -1,4 +1,5 @@
--- Run this script as a user who has privs to create tables and grant permissions, like "root" in MySQL Environment
+In MySQL Workbench or any MySQL environment, the following script should be run by a user who has the priveleges to create tables and grant permissions
+like "root" in a MySQL Environment.
 
 
 drop database if exists business;
@@ -40,7 +41,7 @@ select	employee_id,
 		job_title
 from	employee;
 
--- You can run these commands using the 'root' account that got created when you installed MySQL
+-- The following commands are to be run using the 'root' account that got created when MySQL was installed
 drop user if exists accounting_user@localhost;
 drop user if exists marketing_user@localhost;
 drop user if exists techology_user@localhost;
@@ -60,6 +61,16 @@ grant select on business.v_employee to accounting_user@localhost;
 grant select on business.v_employee to marketing_user@localhost;
 grant select on business.v_employee to legal_user@localhost;
 grant select on business.v_employee to technology_user@localhost;
+
+-- A test of the above created databases would be to log in as root and create a view called v_employee_fn_dept that has just the first_name and department columns from the employee table.
+The view should then be queried:-
+
+create view v_employee_fn_dept as
+select	first_name,
+		department
+from	employee;
+
+select * from v_employee_fn_dept;
 
 
 
